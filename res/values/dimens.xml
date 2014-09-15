@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="global_margin">20dp</dimen>
+    <dimen name="radiobutton_width">100dp</dimen>
+    
+
+</resources>

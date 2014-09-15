@@ -1,0 +1,152 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:fillViewport="true"
+        android:background="#28303B">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/global_margin"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_title_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#21252B"
+            android:text="@string/mode"
+            android:textColor="#FFFFFF" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#28303B"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="12dip"
+            android:weightSum="3"
+            android:paddingTop="4dip" >
+
+            <RadioButton
+                android:id="@+id/radiobutton_silent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/silent"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/radiobutton_vibrate"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/vibrate"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/radiobutton_normal"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/normal"
+                android:textColor="#FFFFFF" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_title_setting"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dip"
+            android:background="#21252B"
+            android:text="@string/setting"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="40dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ringtone"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/sbring"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dip" />
+
+            <TextView
+                android:id="@+id/tvmedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Media"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/sbmedia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dip" />
+
+            <TextView
+                android:id="@+id/tvalarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/sbalarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dip" />
+
+            <TextView
+                android:id="@+id/tvnotif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notifications"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/sbnotif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dip" />
+
+            <TextView
+                android:id="@+id/tvsystem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="System"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/sbsystem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dip" />
+
+            <TextView
+                android:id="@+id/tvcall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voice call"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/sbcall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
