@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:background="#21252B"
             android:text="@string/mode"
+            android:gravity="center"
+            android:textSize="20sp"
             android:textColor="#FFFFFF" />
 
         <RadioGroup
@@ -27,27 +29,26 @@
             android:background="#28303B"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="12dip"
-            android:weightSum="3"
-            android:paddingTop="4dip" >
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" >
 
             <RadioButton
                 android:id="@+id/radiobutton_silent"
-                android:layout_weight="1"
+                android:layout_width="@dimen/radiobutton_width"
                 android:layout_height="wrap_content"
                 android:text="@string/silent"
                 android:textColor="#FFFFFF" />
 
             <RadioButton
                 android:id="@+id/radiobutton_vibrate"
-                android:layout_weight="1"
+                android:layout_width="@dimen/radiobutton_width"
                 android:layout_height="wrap_content"
                 android:text="@string/vibrate"
                 android:textColor="#FFFFFF" />
 
             <RadioButton
                 android:id="@+id/radiobutton_normal"
-                android:layout_weight="1"
+                android:layout_width="@dimen/radiobutton_width"
                 android:layout_height="wrap_content"
                 android:text="@string/normal"
                 android:textColor="#FFFFFF" />
@@ -60,13 +61,15 @@
             android:layout_marginBottom="12dip"
             android:background="#21252B"
             android:text="@string/setting"
+            android:textSize="20sp"
+            android:gravity="center"
             android:textColor="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dip"
-            android:layout_marginRight="40dip"
+            android:layout_marginLeft="30dip"
+            android:layout_marginRight="30dip"
             android:orientation="vertical" >
 
             <TextView
