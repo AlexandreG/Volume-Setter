@@ -1,15 +1,14 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:fillViewport="true"
-        android:background="#28303B">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#28303B"
+    android:fillViewport="true" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/global_margin"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical" >
 
         <TextView
@@ -17,10 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#21252B"
-            android:text="@string/mode"
             android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF" />
+            android:text="@string/mode"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -60,16 +59,17 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dip"
             android:background="#21252B"
-            android:text="@string/setting"
-            android:textSize="20sp"
             android:gravity="center"
-            android:textColor="#FFFFFF" />
+            android:text="@string/setting"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dip"
-            android:layout_marginRight="30dip"
+            android:layout_marginLeft="@dimen/global_margin"
+            android:layout_marginRight="@dimen/global_margin"
+            android:layout_marginBottom="@dimen/global_margin"
             android:orientation="vertical" >
 
             <TextView
