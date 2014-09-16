@@ -115,6 +115,11 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 	 * Initialize the seekbars
 	 */
 	private void initSeekBarsLayout() {
+
+		int ringerMode = audioManager.getRingerMode();
+		// set normal ringermode just to get stream_ring, otherwise it is 0
+		audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+
 		ring.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_RING));
 		ring.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_RING));
 
@@ -132,6 +137,8 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 
 		call.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
 		call.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
+
+		audioManager.setRingerMode(ringerMode);
 
 		disableUselessSeekbars();
 	}
