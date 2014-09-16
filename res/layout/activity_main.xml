@@ -24,30 +24,32 @@
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
+            android:weightSum="3"
             android:layout_height="wrap_content"
             android:background="#28303B"
             android:gravity="center"
             android:orientation="horizontal"
+            android:paddingLeft="5dp"
             android:paddingBottom="15dp"
             android:paddingTop="15dp" >
 
             <RadioButton
                 android:id="@+id/radiobutton_silent"
-                android:layout_width="@dimen/radiobutton_width"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/silent"
                 android:textColor="#FFFFFF" />
 
             <RadioButton
                 android:id="@+id/radiobutton_vibrate"
-                android:layout_width="@dimen/radiobutton_width"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/vibrate"
                 android:textColor="#FFFFFF" />
 
             <RadioButton
                 android:id="@+id/radiobutton_normal"
-                android:layout_width="@dimen/radiobutton_width"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/normal"
                 android:textColor="#FFFFFF" />
