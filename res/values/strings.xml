@@ -10,4 +10,7 @@
     <string name="mode">Mode</string>
     <string name="setting">Volume</string>
 
+    
+    <string name="action_save">Save config</string>
+    <string name="action_load">Load config</string>
 </resources>
