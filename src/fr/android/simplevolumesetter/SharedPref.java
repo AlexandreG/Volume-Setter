@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 public class SharedPref {
 	private final static String STRING_ERROR = "";
 	private final static int INT_ERROR = -1;
+	private final static boolean BOOLEAN_ERROR = false;
 
 
 	public static void saveString(String key, String value) {
@@ -29,5 +30,16 @@ public class SharedPref {
 	public static int loadInt(String key) {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(GlobalApp.getInstance().getContext());
 		return sp.getInt(key, INT_ERROR);
+	}
+
+	public static void saveBoolean(String key, boolean value) {
+		Editor editor = PreferenceManager.getDefaultSharedPreferences(GlobalApp.getInstance().getContext()).edit();
+		editor.putBoolean(key, value);
+		editor.commit();
+	}
+
+	public static boolean loadBoolean(String key) {
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(GlobalApp.getInstance().getContext());
+		return sp.getBoolean(key, BOOLEAN_ERROR);
 	}
 }

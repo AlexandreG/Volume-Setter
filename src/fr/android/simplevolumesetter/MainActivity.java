@@ -17,6 +17,8 @@ import fr.android.volumesetter.R;
 public class MainActivity extends Activity implements android.widget.SeekBar.OnSeekBarChangeListener {
 	final protected String TAG = "Log";
 
+	private static final String IS_CONFIG_SAVED = "is_config_saved";
+
 	private static final String PHONE_STATE = "phone_state";
 	private static final String STREAM_RING = "stream_ring";
 	private static final String STREAM_NOTIFICATION = "stream_notification";
@@ -221,6 +223,18 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		return true;
 	}
 
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		// if no config, we disable the load button
+		if (SharedPref.loadBoolean(IS_CONFIG_SAVED)) {
+			menu.getItem(1).setEnabled(true);
+		} else {
+			menu.getItem(1).setEnabled(false);
+		}
+
+		return true;
+	}
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean handled = false;
 
@@ -259,12 +273,20 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		audioManager.setRingerMode(ringerMode);
 
 		Toast.makeText(getApplicationContext(), "Config saved", Toast.LENGTH_SHORT).show();
+
+		SharedPref.saveBoolean(IS_CONFIG_SAVED, true);
 	}
 
 	/**
 	 * Load the configurations from the shared prefs
 	 */
 	private void loadConfig() {
+		if (SharedPref.loadBoolean(IS_CONFIG_SAVED) == false) {
+			Log.e(TAG, "Unable to load the config");
+			Toast.makeText(getApplicationContext(), "Unable to load the config", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
 		// load the values
 		int phoneState = SharedPref.loadInt(PHONE_STATE);
 
@@ -295,6 +317,7 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		disableUselessSeekbars();
 
 		Toast.makeText(getApplicationContext(), "Config loaded", Toast.LENGTH_SHORT).show();
+
 	}
 
 	/**
