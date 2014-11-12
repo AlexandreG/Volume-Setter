@@ -309,7 +309,6 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		int voiceCallValue = SharedPref.loadInt(STREAM_VOICE_CALL);
 
 		// load the values in the system
-		checkRadioButton(getRadioButtonId(phoneState));
 		audioManager.setStreamVolume(AudioManager.STREAM_RING, ringValue, 0);
 		audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notificationValue, 0);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, musicValue, 0);
@@ -326,6 +325,8 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		system.setProgress(systemValue);
 		call.setProgress(voiceCallValue);
 		disableUselessSeekbars();
+
+		checkRadioButton(getRadioButtonId(phoneState));
 
 		Toast.makeText(getApplicationContext(), "Config loaded", Toast.LENGTH_SHORT).show();
 
