@@ -44,6 +44,11 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		setContentView(R.layout.activity_main);
 
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		initViewsId();
 
@@ -51,7 +56,6 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 
 		initSeekBarsLayout();
 		initSeekBarListener();
-
 	}
 
 	/**
