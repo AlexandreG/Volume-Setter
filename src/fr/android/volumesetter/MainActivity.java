@@ -15,7 +15,7 @@ import android.widget.Toast;
 import fr.android.volumesetter.R;
 
 public class MainActivity extends Activity implements android.widget.SeekBar.OnSeekBarChangeListener {
-	final protected String TAG = "Log";
+	final protected static String TAG = "Log";
 
 	private static final String IS_CONFIG_SAVED = "is_config_saved";
 
@@ -342,6 +342,40 @@ public class MainActivity extends Activity implements android.widget.SeekBar.OnS
 		alarm.setEnabled(true);
 		system.setEnabled(true);
 		call.setEnabled(true);
+	}
+
+	public static void widgetLoadBoolean(Context context) {
+		if (SharedPref.loadBoolean(IS_CONFIG_SAVED) == false) {
+			Log.e(TAG, "Unable to load the config");
+			Toast.makeText(context, "Unable to load the config", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		// load the values
+		int phoneState = SharedPref.loadInt(PHONE_STATE);
+
+		int ringValue = SharedPref.loadInt(STREAM_RING);
+		int notificationValue = SharedPref.loadInt(STREAM_NOTIFICATION);
+		int musicValue = SharedPref.loadInt(STREAM_MUSIC);
+		int alarmValue = SharedPref.loadInt(STREAM_ALARM);
+		int systemValue = SharedPref.loadInt(STREAM_SYSTEM);
+		int voiceCallValue = SharedPref.loadInt(STREAM_VOICE_CALL);
+
+
+		AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		
+		// load the values in the system
+		audioManager.setStreamVolume(AudioManager.STREAM_RING, ringValue, 0);
+		audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notificationValue, 0);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, musicValue, 0);
+		audioManager.setStreamVolume(AudioManager.STREAM_ALARM, alarmValue, 0);
+		audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, systemValue, 0);
+		audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, voiceCallValue, 0);
+
+		audioManager.setRingerMode(phoneState);
+
+		Toast.makeText(context, "Config loaded", Toast.LENGTH_SHORT).show();
+
 	}
 
 }
