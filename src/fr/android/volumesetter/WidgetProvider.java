@@ -8,11 +8,6 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import fr.android.volumesetter.R;
 
-/**
- * Created by Jacek Milewski
- * looksok.wordpress.com
- */
-
 public class WidgetProvider extends AppWidgetProvider {
 
 	@Override
