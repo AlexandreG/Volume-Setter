@@ -1,4 +1,4 @@
-package fr.android.simplevolumesetter;
+package fr.android.volumesetter;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;

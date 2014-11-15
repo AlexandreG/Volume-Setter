@@ -1,4 +1,4 @@
-package fr.android.simplevolumesetter;
+package fr.android.volumesetter;
 
 import android.app.Activity;
 import android.content.Context;
