@@ -2,77 +2,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#28303B"
-    android:fillViewport="true" >
+    android:background="@color/main_background"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_title_mode"
+            android:id="@+id/title_mode_text_view"
+            style="@style/TitleCatTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#21252B"
             android:gravity="center"
-            android:text="@string/mode"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:text="@string/mode_title" />
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
-            android:weightSum="3"
             android:layout_height="wrap_content"
-            android:background="#28303B"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp" >
+            android:paddingBottom="@dimen/radiobutton_padding_vertical"
+            android:paddingTop="@dimen/radiobutton_padding_vertical">
 
             <RadioButton
                 android:id="@+id/radiobutton_silent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="@dimen/radiobutton_padding_right"
                 android:text="@string/silent"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <RadioButton
                 android:id="@+id/radiobutton_vibrate"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="@dimen/radiobutton_padding_right"
                 android:text="@string/vibrate"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <RadioButton
                 android:id="@+id/radiobutton_normal"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/normal"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/tv_title_setting"
+            style="@style/TitleCatTextViewStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dip"
-            android:background="#21252B"
             android:gravity="center"
-            android:text="@string/setting"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:text="@string/setting" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/global_margin"
             android:layout_marginLeft="@dimen/global_margin"
             android:layout_marginRight="@dimen/global_margin"
-            android:layout_marginBottom="@dimen/global_margin"
-            android:orientation="vertical" >
+            android:layout_marginTop="@dimen/volume_cat_padding_top"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvring"
@@ -85,53 +80,53 @@
                 android:id="@+id/sbring"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dip" />
+                android:layout_marginBottom="@dimen/seekbar_margin_bottom" />
 
             <TextView
                 android:id="@+id/tvmedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Media"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <SeekBar
                 android:id="@+id/sbmedia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dip" />
+                android:layout_marginBottom="@dimen/seekbar_margin_bottom" />
 
             <TextView
                 android:id="@+id/tvalarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Alarm"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <SeekBar
                 android:id="@+id/sbalarm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dip" />
+                android:layout_marginBottom="@dimen/seekbar_margin_bottom" />
 
             <TextView
                 android:id="@+id/tvnotif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Notifications"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <SeekBar
                 android:id="@+id/sbnotif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dip" />
+                android:layout_marginBottom="@dimen/seekbar_margin_bottom" />
 
             <TextView
                 android:id="@+id/tvsystem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="System"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <SeekBar
                 android:id="@+id/sbsystem"
@@ -144,13 +139,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Voice call"
-                android:textColor="#FFFFFF" />
+                android:textColor="@android:color/white" />
 
             <SeekBar
                 android:id="@+id/sbcall"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dip" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 

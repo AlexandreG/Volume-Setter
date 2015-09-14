@@ -1,7 +1,18 @@
 <resources>
 
     <dimen name="global_margin">25dp</dimen>
+    <color name="main_background">#28303B</color>
+
+    <dimen name="title_padding">8dp</dimen>
+    <dimen name="title_size">20sp</dimen>
+    <color name="title_color">#FFFFFF</color>
+    <color name="title_background">#21252B</color>
+
     <dimen name="radiobutton_width">110dp</dimen>
-    
+    <dimen name="radiobutton_padding_vertical">15dp</dimen>
+    <dimen name="radiobutton_padding_right">30dp</dimen>
+
+    <dimen name="volume_cat_padding_top">25dp</dimen>
+    <dimen name="seekbar_margin_bottom">12dp</dimen>
 
 </resources>

@@ -14,7 +14,7 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements android.widget.SeekBar.OnSeekBarChangeListener {
-    final protected static String TAG = "Log";
+    private final static String TAG = MainActivity.class.getSimpleName();
 
     private static final String IS_CONFIG_SAVED = "is_config_saved";
 
@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
     private SeekBar alarm;
     private SeekBar system;
     private SeekBar call;
+
+    //when we set a stream to 0, the phone automatically switch to vibrate mode
+    //so we need to store the previous state
+    private int previousPhoneState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,19 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
     }
 
     /**
+     * Initialize the view objects
+     */
+    private void initViewsId() {
+        ring = (SeekBar) findViewById(R.id.sbring);
+        notifs = (SeekBar) findViewById(R.id.sbnotif);
+        media = (SeekBar) findViewById(R.id.sbmedia);
+        alarm = (SeekBar) findViewById(R.id.sbalarm);
+        system = (SeekBar) findViewById(R.id.sbsystem);
+        call = (SeekBar) findViewById(R.id.sbcall);
+        radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+    }
+
+    /**
      * Initialize the layout and the listeners of the radiogroup
      */
     private void initRadioGroup() {
@@ -75,42 +92,35 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
     /**
      * Check the radioButton and update the mode of the phone
      *
-     * @param checkedId
+     * @param checkedId the id of the checked button
      */
     private void checkRadioButton(int checkedId) {
         radioGroup.check(checkedId);
-        Log.v(TAG, "Check id : " + checkedId);
-        if (checkedId == R.id.radiobutton_silent) {
-            audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            ring.setEnabled(false);
-            notifs.setEnabled(false);
-            system.setEnabled(false);
-        }
-        if (checkedId == R.id.radiobutton_vibrate) {
-            audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-            ring.setEnabled(false);
-            notifs.setEnabled(false);
-            system.setEnabled(false);
-        }
-        if (checkedId == R.id.radiobutton_normal) {
-            audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-            ring.setEnabled(true);
-            notifs.setEnabled(true);
-            system.setEnabled(true);
-        }
-    }
+        switch (checkedId) {
+            case R.id.radiobutton_silent:
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                ring.setEnabled(false);
+                notifs.setEnabled(false);
+                system.setEnabled(false);
+                break;
 
-    /**
-     * Initialize the view objects
-     */
-    private void initViewsId() {
-        ring = (SeekBar) findViewById(R.id.sbring);
-        notifs = (SeekBar) findViewById(R.id.sbnotif);
-        media = (SeekBar) findViewById(R.id.sbmedia);
-        alarm = (SeekBar) findViewById(R.id.sbalarm);
-        system = (SeekBar) findViewById(R.id.sbsystem);
-        call = (SeekBar) findViewById(R.id.sbcall);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+            case R.id.radiobutton_vibrate:
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                ring.setEnabled(false);
+                notifs.setEnabled(false);
+                system.setEnabled(false);
+                break;
+
+            case R.id.radiobutton_normal:
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                ring.setEnabled(true);
+                notifs.setEnabled(true);
+                system.setEnabled(true);
+                break;
+
+            default:
+                break;
+        }
     }
 
     /**
@@ -146,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
     }
 
     private void disableUselessSeekbars() {
-        // if silent mode we disable useless seekbars
+        // if silent/vibrate mode we disable useless seekbars
         if (getCorrectRadioButtonId() != R.id.radiobutton_normal) {
             ring.setEnabled(false);
             notifs.setEnabled(false);
@@ -168,24 +178,30 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        previousPhoneState = getCorrectRadioButtonId();
 
         // on seek bar changment, we update the volume of the phone
         int seekBarId = seekBar.getId();
-        if (seekBarId == this.ring.getId()) {
+        if (seekBarId == ring.getId()) {
             audioManager.setStreamVolume(AudioManager.STREAM_RING, progress, 0);
-        } else if (seekBarId == this.notifs.getId()) {
+        } else if (seekBarId == notifs.getId()) {
             audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, progress, 0);
-        } else if (seekBarId == this.media.getId()) {
+        } else if (seekBarId == media.getId()) {
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
-        } else if (seekBarId == this.alarm.getId()) {
+        } else if (seekBarId == alarm.getId()) {
             audioManager.setStreamVolume(AudioManager.STREAM_ALARM, progress, 0);
-        } else if (seekBarId == this.system.getId()) {
+        } else if (seekBarId == system.getId()) {
             audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, progress, 0);
-        } else if (seekBarId == this.call.getId()) {
+        } else if (seekBarId == call.getId()) {
             audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, 0);
         }
         radioGroup.check(getCorrectRadioButtonId());
 
+        if (progress == 0
+                && (seekBarId == this.ring.getId() || seekBarId == notifs.getId() || seekBarId == system.getId())
+                && (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE || audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT)) {
+            checkRadioButton(previousPhoneState);
+        }
     }
 
     @Override
@@ -201,15 +217,13 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
      */
     private int getCorrectRadioButtonId() {
         int phoneState = audioManager.getRingerMode();
-        Log.v(TAG, "PhoneState : " + phoneState);
-
         return getRadioButtonId(phoneState);
     }
 
     /**
      * Return the radio button id associated to the given mode
      *
-     * @param the given ringMode
+     * @param ringMode the given ringMode
      */
     private int getRadioButtonId(int ringMode) {
         if (ringMode == AudioManager.RINGER_MODE_SILENT) {
