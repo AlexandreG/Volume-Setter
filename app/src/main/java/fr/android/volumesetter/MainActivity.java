@@ -197,11 +197,12 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
         }
         radioGroup.check(getCorrectRadioButtonId());
 
-        if (progress == 0
-                && (seekBarId == this.ring.getId() || seekBarId == notifs.getId() || seekBarId == system.getId())
-                && (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE || audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT)) {
-            checkRadioButton(previousPhoneState);
-        }
+        //TODO : fix this
+//        if (progress == 0
+//                && (seekBarId == this.ring.getId() || seekBarId == notifs.getId() || seekBarId == system.getId())
+//                && (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE || audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT)) {
+//            checkRadioButton(previousPhoneState);
+//        }
     }
 
     @Override
