@@ -15,6 +15,9 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
+        <item name="colorPrimary">@color/global_primary_color</item>
+        <item name="colorPrimaryDark">@color/global_primary_dark_color</item>
+        <item name="colorAccent">@color/global_accent_color</item>
     </style>
 
     <style name="TitleCatTextViewStyle">

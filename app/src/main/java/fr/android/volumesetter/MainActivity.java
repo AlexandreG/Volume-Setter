@@ -239,8 +239,7 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -257,20 +256,16 @@ public class MainActivity extends AppCompatActivity implements android.widget.Se
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        boolean handled = false;
-
         switch (item.getItemId()) {
             case R.id.action_load:
                 loadConfig();
-                handled = true;
-                break;
+                return true;
 
             case R.id.action_save:
                 saveConfig();
-                handled = true;
-                break;
+                return true;
         }
-        return handled;
+        return super.onOptionsItemSelected(item);
     }
 
     /**
