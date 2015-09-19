@@ -15,4 +15,7 @@
     <dimen name="volume_cat_padding_top">25dp</dimen>
     <dimen name="seekbar_margin_bottom">12dp</dimen>
 
+    <!-- Widget -->
+    <dimen name="widget_size">40dp</dimen>
+    <item name="widget_refresh_period" type="integer">1000000</item>
 </resources>
